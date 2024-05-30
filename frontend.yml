@@ -9,3 +9,10 @@
 
 
 
+    - name: start nginx
+      ansible.builtin.systemd_service:
+        state: restarted
+        name: nginx
+
+
+
