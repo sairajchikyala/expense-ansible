@@ -7,8 +7,11 @@
         name: nginx
         state: latest
 
-  # frontend setup
-  # frontend setup
+
+- name: restart nginx
+  ansible.builtin.systemd_service:
+    state: restarted
+    name: nginx
 
 
   # frontend setup
