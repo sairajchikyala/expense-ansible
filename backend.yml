@@ -50,12 +50,7 @@
           cryptography
         executable: pip3.9
 
-    - name: install python mySQL Client
-      ansible.builtin.pip:
-        name:
-          Pymysql
 
-      executable: pip3.9
 
 
 
