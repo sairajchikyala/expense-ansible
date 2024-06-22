@@ -1,0 +1,78 @@
+format_version: 10
+pipelines:
+  backend:
+    group: defaultGroup
+
+    materials:
+      git-3da8454:
+        git: https://github.com/sairajchikyala/expense-ansible.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - DEV:
+          fetch_materials: true
+          environmental_variable:
+            env: dev
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+
+
+      - QA:
+          fetch_materials: true
+          environmental_variable:
+            env: qa
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+
+
+      - STAGE:
+          fetch_materials: true
+          environmental_variable:
+            env: stage
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+
+      - PROD:
+          fetch_materials: true
+          environmental_variable:
+            env: prod
+          approval:
+            type: manual
+          jobs:
+            ansible-playbook:
+              tasks:
+                - exec:
+                    arguments:
+                      - ansible.sh
+                      - backend
+                    command: bash #bash ansible.sh backend
+                    run_if: passed
+
